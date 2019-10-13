@@ -5,8 +5,7 @@
         id="shellbar"
         logo="https://img.shields.io/github/package-json/v/rsletta/get_openui5_latest_url.svg"
         @logoClick="onLogoClick"
-      >
-      </ui5-shellbar>
+      ></ui5-shellbar>
     </header>
     <section class="app-content">
       <img
@@ -17,7 +16,7 @@
       <div class="card-container">
         <div class="bodytext">
           <p>
-            <ui5-link href="https://openui5.org/" target="_blank">OpenUI5</ui5-link> Latest Version is a community run API, serving the urls of the latest
+            <ui5-link href="https://openui5.org/" target="_blank">OpenUI5</ui5-link> Latest Version is a community run API, serving the download urls of the latest
             available
             versions from
             <ui5-link href="https://github.com/sap/openui5" target="_blank">Github</ui5-link>.
@@ -38,12 +37,12 @@
           </p>
         </div>
         <div>
-        <ui5-title>What are the newest versions?</ui5-title>
-        <ui5-card class="medium">
-          <div class="card-content">
-            <VersionList />
-          </div>
-        </ui5-card>
+          <ui5-title>What are the newest versions?</ui5-title>
+          <ui5-card class="medium">
+            <div class="card-content">
+              <VersionList />
+            </div>
+          </ui5-card>
         </div>
       </div>
     </section>
@@ -125,7 +124,7 @@ body {
   font-size: var(--sapMFontMediumSize, 0.875rem);
 }
 
-.footer  {
+.footer {
   font-size: var(--sapMFontMediumSize, 0.875rem);
 }
 ui5-card {
