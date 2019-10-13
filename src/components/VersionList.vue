@@ -1,9 +1,15 @@
 <template>
   <div>
-    <h3>What are the newest versions?</h3>
     <div v-if="listReady">
-      <ui5-list v-for="version in versions" v-bind:key="version" id="myList" class="full-width">
-        <ui5-li>{{ version }}</ui5-li>
+      <ui5-list
+        v-for="version in versions"
+        v-bind:key="version.version"
+        id="myList"
+        class="card-content-child list"
+        style="width: 100%"
+        separators="None"
+      >
+        <ui5-li type="Inactive" :info="version.eom" :info-state="version.lts">{{ version.version }}</ui5-li>
       </ui5-list>
     </div>
     <div v-else>
@@ -26,32 +32,36 @@ export default {
     };
   },
   created: function() {
-    var db = firebase.firestore();
-    var doc = db.collection("versions").doc("savedVersions");
-    doc.get().then(
-      function(doc) {
-        this.versions = doc.data().versions.split(",");
+    const db = firebase.firestore();
+    db.collection("versions")
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          if (doc.id === "latest" || doc.id === "savedVersions") {
+            return;
+          } 
+          let newEntry = {};
+          let data = doc.data();
+          newEntry.version = data.version;
+          newEntry.published = data.published;
+          newEntry.runtime = data.runtime;
+          newEntry.runtimeMobile = data.runtimeMobile;
+          newEntry.sdk = data.sdk;
+          newEntry.lts = data.lts ? "Success" : "Neutral";
+          newEntry.eom = data.eom ? data.eom : "";
+          this.versions.push(newEntry);
+        })
+
+        this.versions.reverse();
         this.listReady = true;
-      }.bind(this)
-    );
+      })
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.list{
+  text-align: start;
 }
 </style>
