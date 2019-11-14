@@ -3,14 +3,14 @@
     <ui5-busyindicator :active="!listReady" size="Large">
       <div>
         <ui5-list
-          v-for="version in versions"
-          v-bind:key="version.version"
           id="myList"
           class="card-content-child list"
           style="width: 100%"
           separators="None"
         >
           <ui5-li
+            v-for="version in versions"
+            v-bind:key="version.version"
             type="Inactive"
             :info="version.eom"
             :info-state="version.lts"
