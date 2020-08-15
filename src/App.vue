@@ -32,7 +32,7 @@
           <ui5-title>Disclaimer:</ui5-title>
           <p>
             This service has no affiliation to
-            <ui5-link href="https://www.sap.com" target="_blank">SAP AG</ui5-link> or the
+            <ui5-link href="https://www.sap.com" target="_blank">SAP SE</ui5-link> or the
             <ui5-link href="https://openui5.org/" target="_blank">OpenUI5</ui5-link> team.
           </p>
         </div>
