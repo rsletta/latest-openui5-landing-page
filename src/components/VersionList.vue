@@ -5,16 +5,17 @@
         <ui5-list
           id="myList"
           class="card-content-child list"
-          style="width: 100%"
           separators="None"
         >
           <ui5-li
             v-for="version in versions"
             v-bind:key="version.version"
             type="Inactive"
-            :info="version.eom"
-            :info-state="version.lts"
-          >{{ version.version }}</ui5-li>
+            v-bind:description="version.eom"
+            v-bind:additional-Text="version.lts"
+            v-bind:additional-text-state="version.ltsState"
+            >{{ version.version }}</ui5-li
+          >
         </ui5-list>
       </div>
     </ui5-busyindicator>
@@ -30,34 +31,39 @@ export default {
   data() {
     return {
       versions: [],
-      listReady: false
+      listReady: false,
     };
   },
-  created: function() {
-    /* const db = firebase.firestore();
-    db.collection("versions")
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          if (doc.id === "latest" || doc.id === "savedVersions") {
-            return;
-          }
-          let newEntry = {};
-          let data = doc.data();
-          newEntry.version = data.version;
-          newEntry.published = data.published;
-          newEntry.runtime = data.runtime;
-          newEntry.runtimeMobile = data.runtimeMobile;
-          newEntry.sdk = data.sdk;
-          newEntry.lts = data.lts ? "Success" : "Neutral";
-          newEntry.eom = data.eom ? data.eom : "";
-          this.versions.push(newEntry);
-        });
+  created: async function () {
+    const data = await fetch(
+      "https://latestopenui5storage.blob.core.windows.net/latest-openui5/versions.json"
+    ).then((response) => {
+      return response.json();
+    });
 
-        this.versions.reverse();
-        this.listReady = true; 
-      });*/
-  }
+    const versions = Object.keys(data.versions).map((key) => {
+      return data.versions[key];
+    }).sort((a, b) => {
+      return parseFloat(a.version) - parseFloat(b.version);
+    }).reverse();
+
+    this.versions = versions.reduce((acc, curr) => {
+      let newEntry = {};
+      newEntry.version = curr.version;
+      newEntry.published = curr.published;
+      newEntry.runtime = curr.runtime;
+      newEntry.runtimeMobile = curr.runtimeMobile;
+      newEntry.sdk = curr.sdk;
+      newEntry.lts = curr.lts ? "LTM" : "";
+      newEntry.ltsState = curr.lts ? "Success" : "None";
+      newEntry.eom = curr.eom ? curr.eom : "";
+
+      acc.push(newEntry);
+      return acc;
+    }, []);
+
+    this.listReady = true;
+  },
 };
 </script>
 
@@ -66,4 +72,5 @@ export default {
 .list {
   text-align: start;
 }
+
 </style>
