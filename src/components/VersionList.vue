@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import firebase from "firebase/app";
-import 'firebase/firestore';
 import "@ui5/webcomponents/dist/BusyIndicator";
 import "@ui5/webcomponents/dist/List";
 import "@ui5/webcomponents/dist/StandardListItem";
@@ -36,7 +34,7 @@ export default {
     };
   },
   created: function() {
-    const db = firebase.firestore();
+    /* const db = firebase.firestore();
     db.collection("versions")
       .get()
       .then(snapshot => {
@@ -57,8 +55,8 @@ export default {
         });
 
         this.versions.reverse();
-        this.listReady = true;
-      });
+        this.listReady = true; 
+      });*/
   }
 };
 </script>

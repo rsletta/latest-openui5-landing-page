@@ -3,9 +3,10 @@
     <header class="app-header">
       <ui5-shellbar
         id="shellbar"
-        logo="https://img.shields.io/github/package-json/v/rsletta/get_openui5_latest_url.svg"
         @logoClick="onLogoClick"
-      ></ui5-shellbar>
+      >
+      <img slot="logo" src="https://img.shields.io/github/package-json/v/rsletta/get_openui5_latest_url.svg"/>
+      </ui5-shellbar>
     </header>
     <section class="app-content">
       <img
@@ -54,12 +55,11 @@
             Ronnie André Bjørvik
             Sletta
           </ui5-link>. Powered by
-          <ui5-link href="https://vuejs.org" target="_blank">Vue.js</ui5-link>,
-          <ui5-link href="https://firebase.google.com/" target="_blank">Firebase</ui5-link>, and
+          <ui5-link href="https://vuejs.org" target="_blank">Vue.js</ui5-link> and
           <ui5-link
             href="https://sap.github.io/ui5-webcomponents/"
             target="_blank"
-          >UI5 Web Components</ui5-link>.
+          >UI5 Web Components</ui5-link>, running on <ui5-link href="https://azure.microsoft.com/" target="_blank">Microsoft Azure</ui5-link>.
         </p>
       </div>
     </footer>
@@ -67,10 +67,9 @@
 </template>
 
 <script>
-import "@ui5/webcomponents-base/dist/features/browsersupport/Edge";
 import VersionList from "./components/VersionList.vue";
-import "@ui5/webcomponents/dist/ShellBar";
-import "@ui5/webcomponents/dist/ShellBarItem";
+import "@ui5/webcomponents-fiori/dist/ShellBar";
+import "@ui5/webcomponents-fiori/dist/ShellBarItem";
 import "@ui5/webcomponents/dist/Icon";
 import "@ui5/webcomponents/dist/Card";
 import "@ui5/webcomponents/dist/Title";
