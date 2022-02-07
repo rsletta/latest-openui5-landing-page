@@ -26,7 +26,7 @@
           <p>
             Documentation for the API is available on
             <ui5-link
-              href="https://github.com/rsletta/get_openui5_latest_url"
+              href="https://github.com/rsletta/latest-openui5-landing-page/tree/master/api"
               target="_blank"
             >Github</ui5-link>.
           </p>
