@@ -14,7 +14,7 @@
       "name": "inputBlob",
       "type": "blob",
       "path": "latest-openui5/versions.json",
-      "connection": "AzureWebJobsStorage",
+      "connection": "LatestOpenUI5Storage",
       "direction": "in"
     },
     {
