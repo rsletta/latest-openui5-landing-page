@@ -3,10 +3,9 @@
     <header class="app-header">
       <ui5-shellbar
         id="shellbar"
-        logo="https://img.shields.io/github/package-json/v/rsletta/get_openui5_latest_url.svg"
         @logoClick="onLogoClick"
       >
-      <img slot="logo" src="https://img.shields.io/github/package-json/v/rsletta/get_openui5_latest_url.svg"/>
+      <img slot="logo" src="https://img.shields.io/github/package-json/v/rsletta/latest-openui5-landing-page?filename=api%2Fpackage.json"/>
       </ui5-shellbar>
     </header>
     <section class="app-content">
