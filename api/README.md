@@ -1,6 +1,6 @@
 !["Logo"](repository-header.png)
 
-[![GitHub release](https://img.shields.io/github/package-json/v/rsletta/latest-openui5-landing-page?filename=api%2Fpackage.json)](https://github.com/rsletta/get_openui5_latest_url/releases/)
+![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/rsletta/latest-openui5-landing-page?filename=api%2Fpackage.json)
 [![GitHub license](https://img.shields.io/github/license/rsletta/get_openui5_latest_url.svg)](https://github.com/rsletta/get_openui5_latest_url/blob/master/LICENSE)
 
 
