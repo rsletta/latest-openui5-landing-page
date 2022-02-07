@@ -11,6 +11,13 @@
       "route": "v1/latest/{id?}"
     },
     {
+      "name": "inputBlob",
+      "type": "blob",
+      "path": "latest-openui5/versions.json",
+      "connection": "AzureWebJobsStorage",
+      "direction": "in"
+    },
+    {
       "type": "http",
       "direction": "out",
       "name": "res"
