@@ -2,20 +2,42 @@
   <div>
     <ui5-busyindicator :active="!listReady" size="Large">
       <div>
-        <ui5-list
-          id="myList"
-          class="card-content-child list"
-          separators="None"
-        >
-          <ui5-li
+        <ui5-list id="myList" class="card-content-child list" separators="None">
+          <ui5-li-custom
             v-for="version in versions"
             v-bind:key="version.version"
             type="Inactive"
-            v-bind:description="version.eom"
-            v-bind:additional-Text="version.lts"
-            v-bind:additional-text-state="version.ltsState"
-            >{{ version.version }}</ui5-li
           >
+            <div class="listitem">
+              <span style="margin-right: 1rem; align-self: stretch">{{
+                version.version
+              }}</span>
+
+              <div style="margin-bottom: 0.5rem">
+                <ui5-badge
+                  class="badge"
+                  v-if="
+                    !version.support.includes('OUT OF MAINTENANCE') &&
+                    !version.lts
+                  "
+                  color-scheme="8"
+                  >{{ version.support }}</ui5-badge
+                >
+                <ui5-badge
+                  class="badge"
+                  v-if="
+                    version.support.includes('OUT OF MAINTENANCE') &&
+                    !version.lts
+                  "
+                  color-scheme="2"
+                  >{{ version.support }}</ui5-badge
+                >
+                <ui5-badge class="badge" v-if="version.lts" :color-scheme="version.ltsStatusColor">{{
+                  version.eom
+                }}</ui5-badge>
+              </div>
+            </div>
+          </ui5-li-custom>
         </ui5-list>
       </div>
     </ui5-busyindicator>
@@ -25,7 +47,8 @@
 <script>
 import "@ui5/webcomponents/dist/BusyIndicator";
 import "@ui5/webcomponents/dist/List";
-import "@ui5/webcomponents/dist/StandardListItem";
+import "@ui5/webcomponents/dist/CustomListItem";
+import "@ui5/webcomponents/dist/Badge";
 
 export default {
   data() {
@@ -41,13 +64,21 @@ export default {
       return response.json();
     });
 
-    const versions = Object.keys(data.versions).map((key) => {
-      return data.versions[key];
-    }).sort((a, b) => {
-      return parseFloat(a.version) - parseFloat(b.version);
-    }).reverse();
+    const versions = Object.keys(data.versions)
+      .map((key) => {
+        return data.versions[key];
+      })
+      .sort((a, b) => {
+        return parseFloat(a.version) - parseFloat(b.version);
+      })
+      .reverse();
 
     this.versions = versions.reduce((acc, curr) => {
+      let ltsYear = null;
+      if (curr.eom) {
+        ltsYear = parseInt(curr.eom.split("/")[1]);
+      }
+
       let newEntry = {};
       newEntry.version = curr.version;
       newEntry.published = curr.published;
@@ -56,7 +87,9 @@ export default {
       newEntry.sdk = curr.sdk;
       newEntry.lts = curr.lts ? "LTM" : "";
       newEntry.ltsState = curr.lts ? "Success" : "None";
+      newEntry.ltsStatusColor = ltsYear > new Date().getUTCFullYear() ? "8" : "2";
       newEntry.eom = curr.eom ? curr.eom : "";
+      newEntry.support = curr.support.toUpperCase();
 
       acc.push(newEntry);
       return acc;
@@ -70,7 +103,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .list {
+  display: flex;
+  justify-content: center;
   text-align: start;
+  width: 18rem;
+}
+
+.listitem {
+  padding: 0.2rem;
+  margin-top: 0.2rem;
+  display: flex;
+  flex-direction: row;
 }
 
 </style>
