@@ -115,4 +115,4 @@ Missing type query.
 ```
 
 ## Disclaimer
-I have no affiliation to the [OpenUI5](https://openui5.org) team or [SAP AG](https://www.sap.com). This API is provided as a service to the OpenUI5 community.
+I have no affiliation to the [OpenUI5](https://openui5.org) team or [SAP SE](https://www.sap.com). This API is provided as a service to the OpenUI5 community.
