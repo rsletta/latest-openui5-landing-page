@@ -4,7 +4,42 @@
       <div>
         <ui5-list id="myList" class="card-content-child list" separators="None">
           <ui5-li-custom
-            v-for="version in versions"
+            v-for="version in maintainedVersions"
+            v-bind:key="version.version"
+            type="Inactive"
+          >
+            <div class="listitem">
+              <span style="margin-right: 1rem; align-self: stretch">{{
+                version.version
+              }}</span>
+
+              <div style="margin-bottom: 0.5rem">
+                <ui5-badge
+                  class="badge"
+                  v-if="
+                    !version.support.includes('OUT OF MAINTENANCE') &&
+                    !version.lts
+                  "
+                  color-scheme="8"
+                  >{{ version.support }}</ui5-badge
+                >
+                <ui5-badge
+                  class="badge"
+                  v-if="
+                    version.support.includes('OUT OF MAINTENANCE') &&
+                    !version.lts
+                  "
+                  color-scheme="2"
+                  >{{ version.support }}</ui5-badge
+                >
+                <ui5-badge class="badge" v-if="version.lts" :color-scheme="version.ltsStatusColor">{{
+                  version.eom
+                }}</ui5-badge>
+              </div>
+            </div>
+          </ui5-li-custom>
+          <ui5-li-custom
+            v-for="version in eolVersions"
             v-bind:key="version.version"
             type="Inactive"
           >
@@ -56,6 +91,18 @@ export default {
       versions: [],
       listReady: false,
     };
+  },
+  computed: {
+    maintainedVersions: function() {
+      return this.versions.filter(version => {
+        return version.support !== 'OUT OF MAINTENANCE';
+      })
+    },
+    eolVersions: function() {
+         return this.versions.filter(version => {
+        return version.support === 'OUT OF MAINTENANCE';
+      })   
+    }
   },
   created: async function () {
     const data = await fetch(
