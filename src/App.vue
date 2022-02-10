@@ -110,6 +110,10 @@ body {
   margin-left: 1rem;
 }
 
+.header-img {
+  max-width: 100%;
+}
+
 .app-content {
   height: calc(100% - 3rem);
   padding: 0 1rem;
@@ -117,7 +121,6 @@ body {
 }
 
 .bodytext {
-  margin-top: 30px;
   padding: 0 1rem;
   text-align: start;
   font-size: var(--sapMFontMediumSize, 0.875rem);
