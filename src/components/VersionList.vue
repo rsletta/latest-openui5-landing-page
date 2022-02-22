@@ -136,7 +136,7 @@ export default {
       newEntry.ltsState = curr.lts ? "Success" : "None";
       newEntry.ltsStatusColor = ltsYear > new Date().getUTCFullYear() ? "8" : "2";
       newEntry.eom = curr.eom ? curr.eom : "";
-      newEntry.support = curr.support.toUpperCase();
+      newEntry.support = curr.support  ? curr.support.toUpperCase() : "MAINTENANCE";
 
       acc.push(newEntry);
       return acc;
