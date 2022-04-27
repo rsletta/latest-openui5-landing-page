@@ -5,7 +5,7 @@
         id="shellbar"
         @logoClick="onLogoClick"
       >
-      <img slot="logo" src="https://img.shields.io/github/package-json/v/rsletta/latest-openui5-landing-page?filename=api%2Fpackage.json"/>
+      
       </ui5-shellbar>
     </header>
     <section class="app-content">
