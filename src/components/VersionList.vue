@@ -38,7 +38,7 @@
               </div>
             </div>
           </ui5-li-custom>
-          <ui5-li-custom
+<!--           <ui5-li-custom
             v-for="version in eolVersions"
             v-bind:key="version.version"
             type="Inactive"
@@ -72,7 +72,7 @@
                 }}</ui5-badge>
               </div>
             </div>
-          </ui5-li-custom>
+          </ui5-li-custom> -->
         </ui5-list>
       </div>
     </ui5-busyindicator>
