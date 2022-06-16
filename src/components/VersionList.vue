@@ -116,7 +116,10 @@ export default {
         return data.versions[key];
       })
       .sort((a, b) => {
-        return parseFloat(a.version) - parseFloat(b.version);
+        // Versions come in semver formated (MAJOR.MINOR.PATCH) strings. We only care about the minor version number, and want to compare that in the sorter. 
+        const aMinor = parseInt(a.version.split(".")[1], 10);
+        const bMinor = parseInt(b.version.split(".")[1], 10);
+        return aMinor - bMinor;
       })
       .reverse();
 
