@@ -16,7 +16,7 @@
       />
       <div class="card-container">
         <div class="bodytext">
-          <h1>Important Notice: This service will be sunset at October 31 2024, and all maintenance has officially stopped.</h1>
+          <h1>Important Notice: This service will be sunset at 31. October 2024, and all maintenance has officially stopped.</h1>
           <p>
             <ui5-link href="https://openui5.org/" target="_blank">OpenUI5</ui5-link> Latest Version is a community run API, serving the download urls of the latest
             available
