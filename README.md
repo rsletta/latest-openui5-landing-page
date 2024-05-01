@@ -1,4 +1,4 @@
-# Important Notice: This service will be sunset at October 31 2024, and all maintenance has officially stopped.
+# Important Notice: This service will be sunset at  31. October 2024, and all maintenance has officially stopped.
 
 # Openui5 Latest Version - Community API landing page
 
